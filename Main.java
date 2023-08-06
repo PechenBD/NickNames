@@ -20,28 +20,29 @@ public class Main {
         }
 
         for (String text : texts) {
-            Runnable logic1 = () -> {
+            int lenght = text.length();
+            Runnable isPalindrome = () -> {
                 if (text.equals(new StringBuilder().append(text).reverse().toString())) {
-                    if (text.length() == 3 && !names.contains(text)) {
-                        names.add(text);
-                        countLenght3.getAndIncrement();
-                    }
-                }
-                if (text.equals(new StringBuilder().append(text).reverse().toString())) {
-                    if (text.length() == 4 && !names.contains(text)) {
-                        names.add(text);
-                        countLenght4.getAndIncrement();
-                    }
-                }
-                if (text.equals(new StringBuilder().append(text).reverse().toString())) {
-                    if (text.length() == 5 && !names.contains(text)) {
-                        names.add(text);
-                        countLenght5.getAndIncrement();
+                    if (!names.contains(text)) {
+                        switch (lenght) {
+                            case 3:
+                                names.add(text);
+                                countLenght3.getAndIncrement();
+                                break;
+                            case 4:
+                                names.add(text);
+                                countLenght4.getAndIncrement();
+                                break;
+                            case 5:
+                                names.add(text);
+                                countLenght5.getAndIncrement();
+                                break;
+                        }
                     }
                 }
             };
 
-            Runnable logic2 = () -> {
+            Runnable sameLetters = () -> {
                 int i = 0;
                 boolean same = false;
                 while (i < text.length() - 1) {
@@ -54,26 +55,26 @@ public class Main {
                     i++;
                 }
                 if (same) {
-                    if (text.length() == 3 && !names.contains(text)) {
-                        names.add(text);
-                        countLenght3.getAndIncrement();
-                    }
-                }
-                if (same) {
-                    if (text.length() == 4 && !names.contains(text)) {
-                        names.add(text);
-                        countLenght4.getAndIncrement();
-                    }
-                }
-                if (same) {
-                    if (text.length() == 5 && !names.contains(text)) {
-                        names.add(text);
-                        countLenght5.getAndIncrement();
+                    if (!names.contains(text)) {
+                        switch (lenght) {
+                            case 3:
+                                names.add(text);
+                                countLenght3.getAndIncrement();
+                                break;
+                            case 4:
+                                names.add(text);
+                                countLenght4.getAndIncrement();
+                                break;
+                            case 5:
+                                names.add(text);
+                                countLenght5.getAndIncrement();
+                                break;
+                        }
                     }
                 }
             };
 
-            Runnable logic3 = () -> {
+            Runnable increaseLetters = () -> {
                 int i = 0;
                 boolean order = false;
                 while (i < text.length() - 1) {
@@ -86,36 +87,36 @@ public class Main {
                     i++;
                 }
                 if (order) {
-                    if (text.length() == 3 && !names.contains(text)) {
-                        names.add(text);
-                        countLenght3.getAndIncrement();
-                    }
-                }
-                if (order) {
-                    if (text.length() == 4 && !names.contains(text)) {
-                        names.add(text);
-                        countLenght4.getAndIncrement();
-                    }
-                }
-                if (order) {
-                    if (text.length() == 5 && !names.contains(text)) {
-                        names.add(text);
-                        countLenght5.getAndIncrement();
+                    if (!names.contains(text)) {
+                        switch(lenght) {
+                            case 3:
+                                names.add(text);
+                                countLenght3.getAndIncrement();
+                                break;
+                            case 4:
+                                names.add(text);
+                                countLenght4.getAndIncrement();
+                                break;
+                            case 5:
+                                names.add(text);
+                                countLenght5.getAndIncrement();
+                                break;
+                        }
                     }
                 }
             };
 
             System.out.println(text);
 
-            Thread myThread1 = new Thread(logic1);
+            Thread myThread1 = new Thread(isPalindrome);
             threads.add(myThread1);
             myThread1.start();
 
-            Thread myThread2 = new Thread(logic2);
+            Thread myThread2 = new Thread(sameLetters);
             threads.add(myThread2);
             myThread2.start();
 
-            Thread myThread3 = new Thread(logic3);
+            Thread myThread3 = new Thread(increaseLetters);
             threads.add(myThread3);
             myThread3.start();
         }
