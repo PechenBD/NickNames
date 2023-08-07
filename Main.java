@@ -11,7 +11,6 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         List<Thread> threads = new ArrayList<>();
-        List<String> names = new ArrayList<>();
 
         Random random = new Random();
         String[] texts = new String[100_000];
@@ -20,25 +19,9 @@ public class Main {
         }
 
         for (String text : texts) {
-            int lenght = text.length();
             Runnable isPalindrome = () -> {
                 if (text.equals(new StringBuilder().append(text).reverse().toString())) {
-                    if (!names.contains(text)) {
-                        switch (lenght) {
-                            case 3:
-                                names.add(text);
-                                countLenght3.getAndIncrement();
-                                break;
-                            case 4:
-                                names.add(text);
-                                countLenght4.getAndIncrement();
-                                break;
-                            case 5:
-                                names.add(text);
-                                countLenght5.getAndIncrement();
-                                break;
-                        }
-                    }
+                    switchTextLenght(text.length());
                 }
             };
 
@@ -55,22 +38,7 @@ public class Main {
                     i++;
                 }
                 if (same) {
-                    if (!names.contains(text)) {
-                        switch (lenght) {
-                            case 3:
-                                names.add(text);
-                                countLenght3.getAndIncrement();
-                                break;
-                            case 4:
-                                names.add(text);
-                                countLenght4.getAndIncrement();
-                                break;
-                            case 5:
-                                names.add(text);
-                                countLenght5.getAndIncrement();
-                                break;
-                        }
-                    }
+                    switchTextLenght(text.length());
                 }
             };
 
@@ -87,22 +55,7 @@ public class Main {
                     i++;
                 }
                 if (order) {
-                    if (!names.contains(text)) {
-                        switch(lenght) {
-                            case 3:
-                                names.add(text);
-                                countLenght3.getAndIncrement();
-                                break;
-                            case 4:
-                                names.add(text);
-                                countLenght4.getAndIncrement();
-                                break;
-                            case 5:
-                                names.add(text);
-                                countLenght5.getAndIncrement();
-                                break;
-                        }
-                    }
+                    switchTextLenght(text.length());
                 }
             };
 
@@ -137,5 +90,19 @@ public class Main {
             text.append(letters.charAt(random.nextInt(letters.length())));
         }
         return text.toString();
+    }
+
+    public static void switchTextLenght(int textLenght) {
+        switch(textLenght) {
+            case 3:
+                countLenght3.getAndIncrement();
+                break;
+            case 4:
+                countLenght4.getAndIncrement();
+                break;
+            case 5:
+                countLenght5.getAndIncrement();
+                break;
+        }
     }
 }
